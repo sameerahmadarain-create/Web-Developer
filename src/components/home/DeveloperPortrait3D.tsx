@@ -3,6 +3,7 @@ import { Sparkles, CheckCircle2, Atom, FileCode2, Code2, Layout } from 'lucide-r
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import heroSecondImg from '../../assets/images/hero_second_img.jpg';
 import hero3dBg from '../../assets/images/hero_3d_bg.jpg';
+import DitherVeil from './DitherVeil';
 
 interface DeveloperPortrait3DProps {
   className?: string;
@@ -104,7 +105,7 @@ export const DeveloperPortrait3D: React.FC<DeveloperPortrait3DProps> = ({
 
       {/* Centerpiece 3D Card Container */}
       <div
-        className="relative w-64 h-80 sm:w-72 sm:h-92 md:w-80 md:h-[400px] lg:w-[350px] lg:h-[430px] rounded-[32px] p-2 sm:p-2.5 bg-gradient-to-b from-white via-slate-50 to-blue-50/70 border border-slate-200/90 shadow-2xl shadow-blue-500/15 transition-all duration-300 ease-out will-change-transform"
+        className="relative w-72 h-[440px] sm:w-80 sm:h-[490px] md:w-[350px] md:h-[530px] lg:w-[370px] lg:h-[560px] rounded-[32px] p-2 sm:p-2.5 bg-gradient-to-b from-white via-slate-50 to-blue-50/70 border border-slate-200/90 shadow-2xl shadow-blue-500/15 transition-all duration-300 ease-out will-change-transform"
         style={{
           transformStyle: 'preserve-3d',
           transform: prefersReducedMotion
@@ -116,49 +117,39 @@ export const DeveloperPortrait3D: React.FC<DeveloperPortrait3DProps> = ({
       >
         {/* Soft White Cutout Frame with Clean Depth */}
         <div 
-          className="relative w-full h-full rounded-[26px] overflow-hidden bg-slate-900 shadow-inner flex items-center justify-center border border-slate-100"
+          className="relative w-full h-full rounded-[26px] overflow-hidden bg-slate-950 shadow-inner flex items-center justify-center border border-slate-100"
           style={{ transform: prefersReducedMotion ? 'none' : 'translateZ(20px)' }}
         >
-          {!imageError ? (
-            <img
-              src={heroSecondImg}
-              alt="Sameer - Professional Web Developer"
-              className="w-full h-full object-cover object-[center_20%] transition-transform duration-700 ease-out hover:scale-105"
-              loading="eager"
-              decoding="async"
-              onError={() => setImageError(true)}
+          <div style={{ width: '100%', height: '100%', minHeight: '340px', position: 'relative' }} className="w-full h-full">
+            <DitherVeil
+              src="https://images.unsplash.com/photo-1737071371043-761e02b1ef95?q=80&w=1400&auto=format&fit=crop"
+              pattern="floyd"
+              pixelSize={2}
+              inkColor="#120f17"
+              paperColor="#f4f1ea"
+              revealRadius={200}
+              softness={0.6}
+              linger={1}
+              fit="contain"
+              rimColor="#a78bfa"
+              palette="duotone"
+              levels={2}
+              contrast={1.15}
+              brightness={0}
+              rim={0}
+              reverse={false}
+              wander={false}
+              clickBurst
             />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col items-center justify-center text-blue-600 p-6 text-center">
-              <Code2 className="w-12 h-12 mb-2" />
-              <span className="text-sm font-semibold text-slate-800">SameerDev</span>
-              <span className="text-xs text-slate-500 mt-1">Professional Web Developer</span>
-            </div>
-          )}
-
-          {/* Subtle Rim Lighting Accent at bottom */}
-          <div 
-            className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/75 via-blue-950/30 to-transparent pointer-events-none" 
-            aria-hidden="true"
-          />
-
-          {/* 3D Specular Sheen on Hover */}
-          <div 
-            className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none transition-all duration-300"
-            style={{
-              opacity: isHovered ? 1 : 0.15,
-              transform: prefersReducedMotion ? 'none' : `translateX(${rotate.y * 2.5}px) translateY(${rotate.x * 2.5}px)`,
-            }}
-            aria-hidden="true"
-          />
+          </div>
 
           {/* Subtitle Bar at bottom of portrait */}
-          <div className="absolute bottom-3 inset-x-3 px-3 py-2 rounded-xl bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-md flex items-center justify-between">
+          <div className="absolute bottom-3 inset-x-3 px-3 py-2 rounded-xl bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-md flex items-center justify-between pointer-events-none z-10">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.7)] animate-pulse" />
               <span className="text-xs font-semibold text-slate-800 tracking-tight">Sameer</span>
             </div>
-            <span className="text-[11px] font-mono text-blue-600 font-medium">Full-Stack Dev</span>
+            <span className="text-[11px] font-mono text-blue-600 font-medium">Interactive Dither</span>
           </div>
         </div>
 
